@@ -10,7 +10,7 @@ export function ConditionersProvider({ children }) {
     types: [],
     manufacturers: [],
   });
-  
+
   // Filter state - preserved across navigation
   const [filters, setFilters] = useState({
     search: '',

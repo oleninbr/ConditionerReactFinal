@@ -8,16 +8,12 @@ import ConditionerDetailPage from './pages/conditioners/ConditionerDetailPage';
 import ConditionerCreatePage from './pages/conditioners/ConditionerCreatePage';
 import ConditionerEditPage from './pages/conditioners/ConditionerEditPage';
 
-/**
- * Main App component
- * Sets up routing, global providers, and error boundary
- */
 function App() {
   return (
     <ErrorBoundary>
+      <BrowserRouter>
       <ToastProvider>
         <ConditionersProvider>
-          <BrowserRouter>
             <Routes>
               <Route element={<Layout />}>
                 {/* Redirect root to conditioners page */}
@@ -27,13 +23,13 @@ function App() {
                 <Route path="/conditioners/new" element={<ConditionerCreatePage />} />
                 <Route path="/conditioners/:id" element={<ConditionerDetailPage />} />
                 <Route path="/conditioners/:id/edit" element={<ConditionerEditPage />} />
-                {/* 404 fallback */}
+
                 <Route path="*" element={<Navigate to="/conditioners" replace />} />
               </Route>
             </Routes>
-          </BrowserRouter>
         </ConditionersProvider>
       </ToastProvider>
+      </BrowserRouter>
     </ErrorBoundary>
   );
 }
