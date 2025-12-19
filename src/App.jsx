@@ -3,7 +3,7 @@ import { ConditionersProvider } from './context/ConditionersContext';
 import { ToastProvider } from './context/ToastContext';
 import ErrorBoundary from './components/ui/ErrorBoundary';
 import Layout from './components/layout/Layout';
-import { conditionersRoutes } from './pages/conditioners/ConditionersRoutes';
+import ConditionersRoutes from './pages/conditioners/ConditionersRoutes';
 
 function App() {
   return (
@@ -11,15 +11,7 @@ function App() {
       <BrowserRouter>
       <ToastProvider>
         <ConditionersProvider>
-            <Routes>
-              <Route element={<Layout />}>
-                <Route path="/" element={<Navigate to="/conditioners" replace />} />
-                {/* Conditioners routes */}
-                {conditionersRoutes}
-
-                <Route path="*" element={<Navigate to="/conditioners" replace />} />
-              </Route>
-            </Routes>
+           <ConditionersRoutes />
         </ConditionersProvider>
       </ToastProvider>
       </BrowserRouter>
