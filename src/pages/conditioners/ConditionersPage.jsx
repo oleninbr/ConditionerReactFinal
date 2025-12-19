@@ -12,13 +12,6 @@ import SummaryWidgets from './components/SummaryWidgets';
 import ConditionerGrid from './components/ConditionerGrid';
 import ConfirmDialog from '../../components/common/ConfirmDialog';
 
-/**
- * Main conditioners page - rich composition of multiple components
- * - Search and filters
- * - Summary widgets (stats by status/type/manufacturer)
- * - Conditioner grid
- * - Delete confirmation
- */
 function ConditionersPage() {
   const navigate = useNavigate();
   const { filters, updateFilters, resetFilters } = useConditionersContext();
