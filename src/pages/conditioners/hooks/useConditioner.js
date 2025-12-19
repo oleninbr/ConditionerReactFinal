@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import conditionersService from '../services/conditionersService';
-import useToast from './useToast';
+import conditionersService from '../../../services/conditionersService';
+import useToast from '../../../hooks/useToast';
 
 /**
  * Custom hook to fetch a single conditioner by ID

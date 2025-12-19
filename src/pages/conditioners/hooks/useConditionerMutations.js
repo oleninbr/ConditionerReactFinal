@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
-import conditionersService from '../services/conditionersService';
-import useToast from './useToast';
+import conditionersService from '../../../services/conditionersService';
+import useToast from '../../../hooks/useToast';
 import { useConditionersList } from './useConditionersList';
 
 

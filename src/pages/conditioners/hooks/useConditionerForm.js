@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { conditionerSchema } from '../utils/validation';
+import { conditionerSchema } from '../../../utils/validation';
 
 /**
  * Custom hook for conditioner form management

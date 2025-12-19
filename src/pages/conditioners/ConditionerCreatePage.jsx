@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import useConditionerForm from '../../hooks/useConditionerForm';
-import useConditionerMutations from '../../hooks/useConditionerMutations';
+import useConditionerForm from './hooks/useConditionerForm';
+import useConditionerMutations from './hooks/useConditionerMutations';
 import useLookups from '../../hooks/useLookups';
 import Button from '../../components/ui/Button';
 import ConditionerForm from './components/ConditionerForm';

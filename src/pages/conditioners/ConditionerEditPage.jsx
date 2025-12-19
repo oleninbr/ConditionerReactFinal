@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import useConditioner from '../../hooks/useConditioner';
-import useConditionerForm from '../../hooks/useConditionerForm';
-import useConditionerMutations from '../../hooks/useConditionerMutations';
+import useConditioner from './hooks/useConditioner';
+import useConditionerForm from './hooks/useConditionerForm';
+import useConditionerMutations from './hooks/useConditionerMutations';
 import useLookups from '../../hooks/useLookups';
 import Button from '../../components/ui/Button';
 import Spinner from '../../components/ui/Spinner';

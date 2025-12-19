@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from 'react';
-import { useConditionersContext } from '../context/ConditionersContext';
-import conditionersService from '../services/conditionersService';
-import useToast from './useToast';
+import { useConditionersContext } from '../../../context/ConditionersContext';
+import conditionersService from '../../../services/conditionersService';
+import useToast from '../../../hooks/useToast';
 
 /**
  * Custom hook to fetch and manage the list of conditioners
