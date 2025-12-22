@@ -1,3 +1,10 @@
+# Component Tree & Architecture
+
+> 📚 **[Див. детальне описання архітектурних патернів](PATTERNS.md)**
+
+## Component Tree
+
+```markdown
 index.html (#root)
 └─ src/main.jsx
    └─ <StrictMode>
