@@ -1,16 +1,101 @@
-# React + Vite
+index.html (#root)
+└─ src/main.jsx
+   └─ <StrictMode>
+      └─ <App>
+         └─ <ErrorBoundary>
+            └─ <BrowserRouter>
+               └─ <ToastProvider>
+                  └─ <ConditionersProvider>
+                     └─ <ConditionersRoutes>
+                        └─ <Routes>
+                           └─ <Route element={<Layout>}>
+                              ├─ <Navigate path="/" → "/conditioners" />
+                              ├─ <Route path="/conditioners" element={<ConditionersPage>} />
+                              ├─ <Route path="/conditioners/new" element={<ConditionerCreatePage>} />
+                              ├─ <Route path="/conditioners/:id" element={<ConditionerDetailPage>} />
+                              ├─ <Route path="/conditioners/:id/edit" element={<ConditionerEditPage>} />
+                              └─ <Navigate path="*" → "/conditioners" />
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Layout
+└─ <Header> [leaf]
+   ├─ <Link "/conditioners">All Conditioners</Link> [leaf]
+   └─ <Link "/conditioners/new">Add New</Link> [leaf]
+└─ <main>
+   └─ <Outlet> (рендерить активну сторінку за маршрутом)
+└─ <ToastContainer>
+   └─ (<Toast> × N) [leaf, умовно]
 
-Currently, two official plugins are available:
+Pages
+└─ ConditionersPage
+   ├─ Header: <Button> Add Conditioner [leaf]
+   ├─ <SearchBar>
+   │  ├─ <Input> [leaf]
+   │  └─ <Button variant="ghost"> Clear [leaf, умовно]
+   ├─ <FiltersPanel>
+   │  ├─ <Select label="Status"> [leaf]
+   │  ├─ <Select label="Type"> [leaf]
+   │  ├─ <Select label="Manufacturer"> [leaf]
+   │  └─ <Button variant="ghost"> Clear All [leaf, умовно]
+   ├─ <SummaryWidgets>
+   │  ├─ <StatWidget "By Status"> [leaf]
+   │  ├─ <StatWidget "By Type"> [leaf]
+   │  └─ <StatWidget "By Manufacturer"> [leaf]
+   ├─ Counters (Showing N of M) [leaf]
+   ├─ <ConditionerGrid>
+   │  ├─ (loading) → <Spinner size="lg"> [leaf, умовно]
+   │  └─ (not loading)
+   │     ├─ (empty) → Empty state [leaf, умовно]
+   │     └─ (list) → <ConditionerCard> × N
+   │        ├─ Header (name, model, status badge) [leaf]
+   │        ├─ Details (location, installed date) [leaf]
+   │        ├─ Chips (type, manufacturer) [leaf]
+   │        └─ Actions:
+   │           ├─ <Button variant="ghost"> View [leaf]
+   │           ├─ <Button variant="ghost"> Edit [leaf]
+   │           └─ <Button variant="ghost" class="text-red-600"> Delete [leaf]
+   └─ <ConfirmDialog> (delete, умовно)
+      └─ <Modal>
+         └─ Actions: <Button variant="secondary">Cancel</Button> [leaf], <Button variant="danger">Delete</Button> [leaf]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+└─ ConditionerCreatePage
+   ├─ Header: <Button variant="ghost">Back</Button> [leaf]
+   └─ Card
+      └─ <ConditionerForm>
+         ├─ <Input> Name / Model / Serial / Location / Installation Date [leaf]
+         ├─ <Select> Status / Type / Manufacturer [leaf]
+         └─ Actions:
+            ├─ <Button variant="secondary">Cancel</Button> [leaf]
+            └─ <Button> Submit (під час сабміту: <Spinner size="sm">) [leaf, умовно]
 
-## React Compiler
+└─ ConditionerEditPage
+   ├─ (loading) → <Spinner size="lg"> [leaf, умовно]
+   ├─ (not found) → Fallback + <Button>Back to List</Button> [leaf, умовно]
+   └─ (ready)
+      ├─ Header: <Button variant="ghost">Back</Button> [leaf]
+      └─ Card
+         └─ <ConditionerForm> (заповнено даними)
+            └─ Actions: Cancel / Update [leaf]
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+└─ ConditionerDetailPage
+   ├─ (loading) → <Spinner size="lg"> [leaf, умовно]
+   ├─ (error/not found) → Fallback + <Button>Back to List</Button> [leaf, умовно]
+   └─ (ready)
+      ├─ Header:
+      │  ├─ <Button variant="ghost">Back</Button> [leaf]
+      │  ├─ <Button variant="secondary">Edit</Button> [leaf]
+      │  └─ <Button variant="danger">Delete</Button> [leaf]
+      ├─ <DetailsPanel>
+      │  └─ <DetailRow> × (Model, Serial, Location, Installation, Status, Type, Manufacturer, Created/Updated) [leaf]
+      └─ <ConfirmDialog> (delete, умовно)
+         └─ <Modal> → Actions: Cancel / Delete [leaf]
 
-## Expanding the ESLint configuration
+UI / Common
+└─ <ErrorBoundary> (глобальний)
+└─ <ToastContainer> / <Toast> [leaf]
+└─ <Modal> (база)
+└─ <ConfirmDialog> (над Modal)
+└─ <Button> / <Input> / <Select> / <Spinner> [leaf]
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Context Providers
+└─ <ToastProvider> (тости: success, error, info, warning)
+└─ <ConditionersProvider> (стан списку, фільтри, лукапи, helper-и)
